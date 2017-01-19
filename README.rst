@@ -6,7 +6,7 @@ wavefront_reader
 .. image:: https://img.shields.io/pypi/v/wavefront_reader.svg
         :target: https://pypi.python.org/pypi/wavefront_reader
 
-.. image:: https://img.shields.io/travis/neuroneuro15/wavefront_reader.svg
+.. image:: https://travis-ci.org/neuroneuro15/ratcave.svg?branch=master
         :target: https://travis-ci.org/neuroneuro15/wavefront_reader
 
 .. image:: https://readthedocs.org/projects/wavefront-reader/badge/?version=latest
@@ -16,7 +16,6 @@ wavefront_reader
 .. image:: https://pyup.io/repos/github/neuroneuro15/wavefront_reader/shield.svg
      :target: https://pyup.io/repos/github/neuroneuro15/wavefront_reader/
      :alt: Updates
-
 
 A parser for wavefront .obj and .mtl files
 
