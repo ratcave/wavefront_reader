@@ -12,7 +12,7 @@ import pytest
 from wavefront_reader import read_objfile
 
 filepath = path.join(path.split(__file__)[0], '..', 'examples')
-filenames = ['untitled.obj', 'untitled_with_normals.obj']
+filenames = ['untitled.obj', 'untitled_with_normals.obj', 'untitled_with_normals_and_texcoords.obj']
 fnames = [path.join(filepath, name) for name in filenames]
 
 @pytest.mark.parametrize("objfile", fnames)
@@ -20,7 +20,7 @@ def test_files_exist(objfile):
         assert path.exists(objfile)
 
 
-@pytest.mark.parametrize("objfile,expected", list(zip(fnames, [True, True])))
+@pytest.mark.parametrize("objfile,expected", list(zip(fnames, [True, True, True])))
 def test_has_vertices(objfile, expected):
     with open(objfile) as f:
         geoms = read_objfile(f)
@@ -28,7 +28,7 @@ def test_has_vertices(objfile, expected):
     assert (len(cube['v']) > 0) == expected
 
 
-@pytest.mark.parametrize("objfile,expected", list(zip(fnames, [False, True])))
+@pytest.mark.parametrize("objfile,expected", list(zip(fnames, [False, True, True])))
 def test_has_normals(objfile, expected):
     with open(objfile) as f:
         geoms = read_objfile(f)
@@ -36,7 +36,7 @@ def test_has_normals(objfile, expected):
     assert (len(cube['vn']) > 0) == expected
 
 
-@pytest.mark.parametrize("objfile,expected", list(zip(fnames, [False, False])))
+@pytest.mark.parametrize("objfile,expected", list(zip(fnames, [False, False, True])))
 def test_has_texcoords(objfile, expected):
     with open(objfile) as f:
         geoms = read_objfile(f)
