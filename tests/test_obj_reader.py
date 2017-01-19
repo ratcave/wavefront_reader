@@ -28,32 +28,28 @@ def test_files_exist(objfile):
 
 @pytest.mark.parametrize("objfile,expected", list(zip(fnames, [True, True, True, True])))
 def test_has_vertices(objfile, expected):
-    with open(objfile) as f:
-        geoms = read_objfile(f)
+    geoms = read_objfile(objfile)
     cube = geoms['Cube']
     assert (len(cube['v']) > 0) == expected
 
 
 @pytest.mark.parametrize("objfile,expected", list(zip(fnames, [False, True, True, True])))
 def test_has_normals(objfile, expected):
-    with open(objfile) as f:
-        geoms = read_objfile(f)
+    geoms = read_objfile(objfile)
     cube = geoms['Cube']
     assert (len(cube['vn']) > 0) == expected
 
 
 @pytest.mark.parametrize("objfile,expected", list(zip(fnames, [False, False, True, True])))
 def test_has_texcoords(objfile, expected):
-    with open(objfile) as f:
-        geoms = read_objfile(f)
+    geoms = read_objfile(objfile)
     cube = geoms['Cube']
     assert (len(cube['vt']) > 0) == expected
 
 
 @pytest.mark.parametrize("objfile", fnames)
 def test_has_texcoords(objfile):
-    with open(objfile) as f:
-        geoms = read_objfile(f)
+    geoms = read_objfile(objfile)
     for geom in geoms.values():
         vertrows = len(geom['v'])
         for coord in ['vn', 'vt']:
@@ -63,8 +59,7 @@ def test_has_texcoords(objfile):
 
 @pytest.mark.parametrize("objfile, count", list(zip(fnames, [1, 1, 1, 2])))
 def test_has_correct_number_of_meshes(objfile, count):
-    with open(objfile) as f:
-        geoms = read_objfile(f)
+    geoms = read_objfile(objfile)
     assert len(geoms) == count
 
 
