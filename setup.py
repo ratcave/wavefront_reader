@@ -15,6 +15,7 @@ requirements = [
 
 test_requirements = [
     'unittest',
+    'pytest'
 ]
 
 setup(

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-import unittest
 from collections import namedtuple, defaultdict
 from six import iteritems
 
@@ -13,7 +12,6 @@ def parse_mixed_delim_str(line):
                 arrs[col].append(int(coord))
 
     return [tuple(arr) for arr in arrs]
-
 
 
 def read_objfile(f):
