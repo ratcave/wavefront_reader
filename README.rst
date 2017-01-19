@@ -6,7 +6,7 @@ wavefront_reader
 .. image:: https://img.shields.io/pypi/v/wavefront_reader.svg
         :target: https://pypi.python.org/pypi/wavefront_reader
 
-.. image:: https://travis-ci.org/neuroneuro15/ratcave.svg?branch=master
+.. image:: https://travis-ci.org/neuroneuro15/wavefront_reader.svg?branch=master
         :target: https://travis-ci.org/neuroneuro15/wavefront_reader
 
 .. image:: https://readthedocs.org/projects/wavefront-reader/badge/?version=latest
