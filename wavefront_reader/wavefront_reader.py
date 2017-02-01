@@ -119,6 +119,7 @@ def read_mtlfile(fname):
 
 def read_wavefront(fname_obj):
     """Returns mesh dictionary along with their material dictionary from a wavefront (.obj and/or .mtl) file."""
+    fname_mtl = ''
     geoms = read_objfile(fname_obj)
     for line in open(fname_obj):
         if line.strip():
@@ -127,11 +128,11 @@ def read_wavefront(fname_obj):
                 fname_mtl = data
                 break
 
+    if fname_mtl:
+        materials = read_mtlfile(path.join(path.dirname(fname_obj), fname_mtl))
 
-    materials = read_mtlfile(path.join(path.dirname(fname_obj), fname_mtl))
-
-    for geom in geoms.values():
-        geom['material'] = materials[geom['usemtl']]
+        for geom in geoms.values():
+            geom['material'] = materials[geom['usemtl']]
 
     return geoms
 
