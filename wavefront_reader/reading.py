@@ -34,6 +34,12 @@ def read_objfile(fname):
                 obj = obj_props[-1]
                 obj['f'] = []
                 obj[prefix] = value
+            # For files without an 'o' statement
+            elif prefix == 'v' and len(obj_props) < 1:
+                obj_props.append({})
+                obj = obj_props[-1]
+                obj['f'] = []
+                obj['o'] = fname
             if obj_props:
                 if prefix[0] == 'v':
                     verts[prefix].append([float(val) for val in value.split(' ')])
