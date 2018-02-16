@@ -24,7 +24,11 @@ def read_objfile(fname):
 
     for line in lines:
         if line:
-            prefix, value = line.split(' ', 1)
+            split_line = line.strip().split(' ', 1)
+            if len(split_line) < 2:
+                continue
+
+            prefix, value = split_line[0], split_line[1]
             if prefix == 'o':
                 obj_props.append({})
                 obj = obj_props[-1]
@@ -62,18 +66,25 @@ def read_mtlfile(fname):
 
     for line in lines:
         if line:
-            prefix, data = line.split(' ', 1)
+            split_line = line.strip().split(' ', 1)
+            if len(split_line) < 2:
+                continue
+
+            prefix, data = split_line[0], split_line[1]
             if 'newmtl' in prefix:
                 material = {}
                 materials[data] = material
             elif materials:
-                if len(data.split(' ')) > 1:
-                    material[prefix] = tuple(float(d) for d in data.split(' '))
-                else:
-                    try:
-                        material[prefix] = int(data)
-                    except ValueError:
-                        material[prefix] = float(data)
+                if data:
+                    split_data = data.strip().split(' ')
+
+                    if len(split_data) > 1:
+                        material[prefix] = tuple(float(d) for d in split_data)
+                    else:
+                        try:
+                            material[prefix] = int(data)
+                        except ValueError:
+                            material[prefix] = float(data)
 
     return materials
 
@@ -83,8 +94,12 @@ def read_wavefront(fname_obj):
     fname_mtl = ''
     geoms = read_objfile(fname_obj)
     for line in open(fname_obj):
-        if line.strip():
-            prefix, data = line.strip().split(' ', 1)
+        if line:
+            split_line = line.strip().split(' ', 1)
+            if len(split_line) < 2:
+                continue
+
+            prefix, data = split_line[0], split_line[1]
             if 'mtllib' in prefix:
                 fname_mtl = data
                 break
