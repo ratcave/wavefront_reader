@@ -22,9 +22,6 @@ def read_objfile(fname):
     with open(fname) as f:
         lines = f.read().splitlines()
 
-    if 'OBJ' not in lines[0]:
-        raise ValueError("File not .obj-formatted.")
-
     for line in lines:
         if line:
             prefix, value = line.split(' ', 1)
